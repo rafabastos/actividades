@@ -5,15 +5,12 @@ import { useDispatch } from 'react-redux'
 import InitStartup from '@/Store/Startup/Init'
 import { useTranslation } from 'react-i18next'
 import { Brand } from '@/Components'
-import ChangeTheme from "@/Store/Theme/ChangeTheme";
+import ChangeTheme from '@/Store/Theme/ChangeTheme'
 
 const IndexStartupContainer = () => {
-
-    const dispatch = useDispatch()
-    dispatch(ChangeTheme.action({ theme: 'default_qhh' }))
-
-    const { Layout, Gutters, Fonts, Colors } = useTheme()
-
+  const dispatch = useDispatch()
+  dispatch(ChangeTheme.action({ theme: 'default_qhh' }))
+  const { Layout, Gutters, Fonts, Colors } = useTheme()
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -21,10 +18,18 @@ const IndexStartupContainer = () => {
   }, [dispatch])
 
   return (
-    <View style={[Layout.fill, Layout.colCenter, {backgroundColor : Colors.darker}]}>
+    <View
+      style={[
+        Layout.fill,
+        Layout.colCenter,
+        { backgroundColor: Colors.darker },
+      ]}
+    >
       <Brand />
       <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} />
-      <Text style={[Fonts.textCenter, {color: Colors.yellow}]}>{t('welcome')}</Text>
+      <Text style={[Fonts.textCenter, { color: Colors.yellow }]}>
+        {t('welcome')}
+      </Text>
     </View>
   )
 }

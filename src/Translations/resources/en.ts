@@ -7,6 +7,6 @@ export default {
     wtd: 'Que hacer',
     wts: 'Que ver',
     wte: 'Que comer',
-    highlight: 'Destacados'
-  }
+    highlight: 'Destacados',
+  },
 }

@@ -33,12 +33,10 @@ const ActivityCard = ({
           {...(image.length > 0
             ? { source: { uri: image } }
             : { source: Images.logo })}
-          resizeMode="cover"
+          resizeMode='cover'
           style={{
-            width: null,
-            height: null,
-            ...StyleSheet.absoluteFillObject,
-            flex: 1,
+            width: 100,
+            height: 150,
           }}
         />
       </TouchableOpacity>

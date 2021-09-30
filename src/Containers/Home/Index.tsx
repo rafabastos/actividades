@@ -9,12 +9,14 @@ import {
   Image,
   TextInput,
 } from 'react-native'
-import { ActivityCard } from '@/Components'
+import { ActivityCard, Stories } from '@/Components'
 import { useTheme } from '@/Theme'
 import { useTranslation } from 'react-i18next'
 import { AllDataState } from '@/Store/AllData'
 import { navigate } from '@/Navigators/Root'
 import Story from 'react-native-story'
+
+// import Stories from "react-native-stories-media"
 
 const IndexHomeContainer = () => {
   const { t } = useTranslation()
@@ -28,14 +30,48 @@ const IndexHomeContainer = () => {
   console.log(' allData ===>>> ', alldata)
 
   const stories = alldata.stories.map((s: any) => {
-    console.log('s===>>> ', s)
-    let story = {...s}
-    // get image from url and sets format
-    story.avatar = { uri: story.avatar.match("http[^\\s]+(jpg|jpeg|png|tiff)\\b")[0] }
-    story.source = { uri: story.source.match("http[^\\s]+(jpg|jpeg|png|tiff)\\b")[0] }
-
+    let story = {
+      profile: s.avatar.match('http[^\\s]+(jpg|jpeg|png|tiff)\\b')[0],
+      stories: [
+        {
+          url: s.source.match('http[^\\s]+(jpg|jpeg|png|tiff)\\b')[0],
+          type: 'image',
+          duration: 10,
+        }
+      ]
+    }
+  
     return story
   })
+
+//  const data = [
+//   {
+//     username: 'Bruno',
+//     profile: 'https://avatars2.githubusercontent.com/u/45196619?s=460&v=4',
+//     title: 'Travel',
+//     stories: [
+//       {
+//         id: 0,
+//         url:
+//           'https://images.unsplash.com/photo-1500099817043-86d46000d58f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+//         type: 'image',
+//         duration: 2,
+//         isReadMore: true,
+//         url_readmore: 'https://github.com/iguilhermeluis',
+//         created: '2021-01-07T03:24:00',
+//       },
+//       {
+//         id: 1,
+//         url: 'https://www.w3schools.com/html/mov_bbb.mp4',
+//         type: 'video',
+//         duration: 2,
+//         isReadMore: true,
+//         url_readmore: 'https://github.com/iguilhermeluis',
+//         created: '2021-01-07T03:24:00',
+//       }
+//     ]
+//   }
+//  ]
 
   return (
     <View
@@ -70,12 +106,14 @@ const IndexHomeContainer = () => {
           {t('home.highlight')}
         </Text>
 
-        <Story
+        <Stories data={stories} />
+        
+        {/* <Story
           style={[{ marginTop: 100, color: Colors.white }]}
           unPressedBorderColor="#e95950"
           pressedBorderColor="#ebebeb"
           stories={stories}
-        />
+        /> */}
 
         <View style={[{ backgroundColor: Colors.darker }]}>
           <View

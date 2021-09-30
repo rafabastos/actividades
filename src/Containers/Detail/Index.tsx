@@ -48,8 +48,6 @@ const IndexDetailsContainer = (route: any) => {
   }
   const activity = activities.find((object: any) => object.id == id)
 
-  console.log(' activity ===>>> ', activity, activities)
-
   const scrollX = new Animated.Value(0) // localizacion del scroll
   const position = Animated.divide(scrollX, screenWidth)
 

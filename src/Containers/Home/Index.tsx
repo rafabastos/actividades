@@ -31,10 +31,10 @@ const IndexHomeContainer = () => {
 
   const stories = alldata.stories.map((s: any) => {
     let story = {
-      profile: s.avatar.match('http[^\\s]+(jpg|jpeg|png|tiff)\\b')[0],
+      profile: s.avatar,
       stories: [
         {
-          url: s.source.match('http[^\\s]+(jpg|jpeg|png|tiff)\\b')[0],
+          url: s.source,
           type: 'image',
           duration: 10,
         }

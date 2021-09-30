@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import {StoryType} from '.';
 
 const ScreenWidth = Dimensions.get('window').width;
+const ScreenHeight = Dimensions.get('window').height;
 
 type Props = {
   story: StoryType;
@@ -33,8 +34,12 @@ const Story = (props: Props) => {
         <Image
           source={{uri: url}}
           onLoadEnd={props.onImageLoaded}
-          style={styles.content}
-          resizeMode="stretch"
+          // style={styles.content}
+          style={{
+            width: ScreenWidth,
+            height: ScreenHeight,
+          }}
+          resizeMode='contain'
           // width={ScreenWidth}
         />
       ) : (

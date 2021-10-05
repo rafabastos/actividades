@@ -9,7 +9,7 @@ import {
   Image,
   TextInput,
 } from 'react-native'
-import { ActivityCard, Stories } from '@/Components'
+import { ActivityCard, Stories, TopBar } from '@/Components'
 import { useTheme } from '@/Theme'
 import { useTranslation } from 'react-i18next'
 import { AllDataState } from '@/Store/AllData'
@@ -81,13 +81,14 @@ const IndexHomeContainer = () => {
         { backgroundColor: Colors.darker },
       ]}
     >
+      <TopBar screen={'Inicio'} />
       <ScrollView>
         <View style={[{ width: '100%', alignItems: 'center' }]}>
-          <Image
+          {/* <Image
             style={[{ marginTop: 0, width: '80%', height: 30 }]}
             source={Images.logoH}
             resizeMode="contain"
-          />
+          /> */}
         </View>
         <Text
           style={[
@@ -98,7 +99,7 @@ const IndexHomeContainer = () => {
               marginTop: 5,
               color: Colors.primary,
               fontWeight: '600',
-              marginBottom: 0,
+              marginBottom: 10,
               paddingBottom: 0,
             },
           ]}
@@ -107,13 +108,6 @@ const IndexHomeContainer = () => {
         </Text>
 
         <Stories data={stories} />
-        
-        {/* <Story
-          style={[{ marginTop: 100, color: Colors.white }]}
-          unPressedBorderColor="#e95950"
-          pressedBorderColor="#ebebeb"
-          stories={stories}
-        /> */}
 
         <View style={[{ backgroundColor: Colors.darker }]}>
           <View

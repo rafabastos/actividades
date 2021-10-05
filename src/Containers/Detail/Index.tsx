@@ -236,7 +236,7 @@ const IndexDetailsContainer = (route: any) => {
           {banners}
           {info}
           {carrousel}
-          {map}
+          {/* {map} */}
         </View>
       </ScrollView>
     </View>

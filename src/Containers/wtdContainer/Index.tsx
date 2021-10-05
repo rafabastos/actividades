@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { View, FlatList, Text, ScrollView, Image } from 'react-native'
-import { ActivityCard } from '@/Components'
+import { ActivityCard, TopBar } from '@/Components'
 import { useTheme } from '@/Theme'
 import { useTranslation } from 'react-i18next'
 import { AllDataState } from '@/Store/AllData'
@@ -21,6 +21,8 @@ const IndexWTDContainer = () => {
     (object: any) => object.what_to_dos.length > 0,
   )
 
+  const topBarRef: React.RefObject<any> = React.useRef()
+
   return (
     <View
       style={[
@@ -29,14 +31,17 @@ const IndexWTDContainer = () => {
         { backgroundColor: Colors.darker },
       ]}
     >
+      <TopBar
+        screen={'Hacer'}
+      />
       <ScrollView>
-        <View style={[{ width: '100%', alignItems: 'center' }]}>
+        {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
           <Image
             style={[{ marginTop: 0, width: '80%', height: 30 }]}
             source={Images.logoH}
             resizeMode="contain"
           />
-        </View>
+        </View> */}
         <Text
           style={[
             Layout.fill,

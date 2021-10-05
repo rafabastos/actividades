@@ -67,7 +67,8 @@ const MainNavigator = () => {
                     shadowRadius: 30,
                     elevation: 5,
                     shadowOpacity: 1,
-                    height: 55
+                    height: 0,
+                    bottom: -100
                 },
                 tabStyle: {
                     alignItems: "center",

@@ -19,6 +19,15 @@ const IndexWTEContainer = () => {
   const filter = alldata.wtecategories.filter(
     (object: any) => object.what_to_eats.length > 0,
   )
+  const [search, setSearch] = React.useState('')
+
+  const getItemsFiltered = (data: any) => {
+    if (search !== '') {
+      console.log(' => aca ', data, filter)
+      data = data.filter(d => d.name.toLowerCase().includes(search.toLowerCase()))
+    }
+    return data
+  }
 
   return (
     <View
@@ -28,7 +37,7 @@ const IndexWTEContainer = () => {
         { backgroundColor: Colors.darker },
       ]}
     >
-      <TopBar screen={'Comer'} />
+      <TopBar screen={'Comer'} customFunction={(t) => setSearch(t)} />
       <ScrollView>
         {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
           <Image
@@ -63,7 +72,7 @@ const IndexWTEContainer = () => {
                 {object.name}
               </Text>
               <FlatList
-                data={object.what_to_eats}
+                data={getItemsFiltered(object.what_to_eats)}
                 renderItem={({
                   item: { id, name, images_poster },
                   index,

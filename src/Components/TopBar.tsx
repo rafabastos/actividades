@@ -42,14 +42,14 @@ const styles = {
 
 const ActivityCard = ({
   id = 0,
-  onPress = () => {},
+  customFunction = () => {},
   screen = 'Inicio',
 }) => {
   //console.log(title +' - '+id)
   const { Images, Colors, Layout, Gutters, Fonts } = useTheme()
   const navigation = useNavigation()
-  const [showMenu, setShowMenu] = React.useState(false)
   const [search, setSearch] = React.useState('')
+  const [showMenu, setShowMenu] = React.useState(false)
 
   return (
     <>
@@ -66,11 +66,12 @@ const ActivityCard = ({
             resizeMode="contain"
           />
           : <TextInput
-              style={{height: 40, width: 130, borderBottomColor: 'white', borderBottomWidth: 0.7 }}
-              onChangeText={t => [onPress(), setSearch(t)]}
+              style={{ height: 40, width: 150, borderColor: 'white', borderWidth: 1, borderRadius: 20, fontSize: 12, letterSpacing: 1 }}
+              onChangeText={t => [customFunction(t), setSearch(t)]}
               value={search}
               placeholderTextColor={'white'}
-              placeholder="Buscar..."
+              placeholderStyle={{ backgroundColor: 'blue'}}
+              placeholder="  Buscar..."
             />
         }
         <View style={{ width: 30 }} />

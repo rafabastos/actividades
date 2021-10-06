@@ -19,6 +19,15 @@ const IndexWTSContainer = () => {
   const filter = alldata.wtscategories.filter(
     (object: any) => object.what_to_sees.length > 0,
   )
+  const [search, setSearch] = React.useState('')
+
+  const getItemsFiltered = (data: any) => {
+    if (search !== '') {
+      console.log(' => aca ', data, filter)
+      data = data.filter(d => d.title.toLowerCase().includes(search.toLowerCase()))
+    }
+    return data
+  }
 
   return (
     <View
@@ -28,7 +37,7 @@ const IndexWTSContainer = () => {
         { backgroundColor: Colors.darker },
       ]}
     >
-      <TopBar screen={'Ver'} />
+      <TopBar screen={'Ver'} customFunction={(t) => setSearch(t)}  />
       <ScrollView>
         {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
           <Image
@@ -63,7 +72,7 @@ const IndexWTSContainer = () => {
                 {object.name}
               </Text>
               <FlatList
-                data={object.what_to_sees}
+                data={getItemsFiltered(object.what_to_sees)}
                 renderItem={({
                   item: { id, title, images_poster },
                   index,

@@ -20,8 +20,15 @@ const IndexWTDContainer = () => {
   const filter = alldata.wtdcategories.filter(
     (object: any) => object.what_to_dos.length > 0,
   )
+  const [search, setSearch] = React.useState('')
 
-  const topBarRef: React.RefObject<any> = React.useRef()
+  const getItemsFiltered = (data: any) => {
+    if (search !== '') {
+      console.log(' => aca ', data, filter)
+      data = data.filter(d => d.name.toLowerCase().includes(search.toLowerCase()))
+    }
+    return data
+  }
 
   return (
     <View
@@ -33,6 +40,7 @@ const IndexWTDContainer = () => {
     >
       <TopBar
         screen={'Hacer'}
+        customFunction={(t) => setSearch(t)}
       />
       <ScrollView>
         {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
@@ -68,7 +76,7 @@ const IndexWTDContainer = () => {
                 {object.name}
               </Text>
               <FlatList
-                data={object.what_to_dos}
+                data={getItemsFiltered(object.what_to_dos)}
                 renderItem={({
                   item: { id, name, images_poster },
                   index,

@@ -39,23 +39,6 @@ const IndexWTEContainer = () => {
     >
       <TopBar screen={'Comer'} customFunction={(t) => setSearch(t)}  title={t('home.wte')} />
       <ScrollView>
-        {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
-          <Image
-            style={[{ marginTop: 0, width: '80%', height: 30 }]}
-            source={Images.logoH}
-            resizeMode="contain"
-          />
-        </View> */}
-        {/* <Text
-          style={[
-            Layout.fill,
-            Fonts.textCenter,
-            Fonts.textRegular,
-            { color: Colors.primary, marginTop: 5, fontWeight: '600' },
-          ]}
-        >
-          {t('home.wte')}
-        </Text> */}
         <View style={[{ backgroundColor: Colors.darker }]}>
           {filter.map((object: any, key: number) => (
             <View
@@ -66,7 +49,7 @@ const IndexWTEContainer = () => {
                 style={[
                   Layout.fill,
                   Fonts.textSmall,
-                  { color: Colors.yellow, marginBottom: 10 },
+                  { color: '#D9444D', marginBottom: 10 },
                 ]}
               >
                 {object.name}

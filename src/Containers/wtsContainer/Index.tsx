@@ -39,23 +39,6 @@ const IndexWTSContainer = () => {
     >
       <TopBar screen={'Ver'} customFunction={(t) => setSearch(t)}  title={t('home.wts')}  />
       <ScrollView>
-        {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
-          <Image
-            style={[{ marginTop: 0, width: '80%', height: 30 }]}
-            source={Images.logoH}
-            resizeMode="contain"
-          />
-        </View> */}
-        {/* <Text
-          style={[
-            Layout.fill,
-            Fonts.textCenter,
-            Fonts.textRegular,
-            { color: Colors.primary, marginTop: 5, fontWeight: '600' },
-          ]}
-        >
-          {t('home.wts')}
-        </Text> */}
         <View style={[{ backgroundColor: Colors.darker }]}>
           {filter.map((object: any, key: number) => (
             <View

@@ -17,7 +17,6 @@ const ScreenHeight = Dimensions.get('window').height
 
 const styles = {
   main: {
-    backgroundColor: '#563391',
     height: 60,
     width: ScreenWidth,
     right: 8,
@@ -35,7 +34,6 @@ const styles = {
   buttonView: {
     height: 3,
     width: 25,
-    backgroundColor: 'white',
     borderRadius: 5,
   },
 }
@@ -54,13 +52,19 @@ const ActivityCard = ({
   const [searchVisible, setSearchVisible] = React.useState(false)
   let refSearch
 
+  // const [color, setColor] = React.useState('white')
+  let color = 'white'
+  if (screen === 'Ver') color = '#F9E104'
+  if (screen === 'Comer') color = '#D9444D'
+
+
   return (
     <>
-      <View style={styles.main}>
+      <View style={[styles.main, { backgroundColor: screen === 'Inicio' ? '#563391' : 'black' }]}>
         <TouchableOpacity children style={styles.drawerButton} onPress={() => setShowMenu(!showMenu)}>
-          <View style={[styles.buttonView, { marginBottom: 4 }]} />
-          <View style={[styles.buttonView, { marginBottom: 4 }]} />
-          <View style={styles.buttonView} />
+          <View style={[styles.buttonView, { marginBottom: 4, backgroundColor: color }]} />
+          <View style={[styles.buttonView, { marginBottom: 4, backgroundColor: color }]} />
+          <View style={[styles.buttonView, { backgroundColor: color }]} />
         </TouchableOpacity>
         { (screen === 'Inicio' || screen === 'Detail')
           ? <Image
@@ -74,7 +78,7 @@ const ActivityCard = ({
                 Layout.fill,
                 Fonts.textCenter,
                 Fonts.textRegular,
-                { color: Colors.white, fontWeight: '600', marginLeft: 10 },
+                { color: color, fontWeight: '600', marginLeft: 10 },
               ]}
             >
               {title}
@@ -86,17 +90,17 @@ const ActivityCard = ({
                 height: 35,
                 width: 120, 
                 marginRight: 5, 
-                borderColor: 'white', 
-              borderWidth: 1, 
-              borderRadius: 20, 
-              fontSize: 12, 
-              letterSpacing: 1, 
-              color: 'white',
-              display: searchVisible ? 'flex' : 'none'
-            }}
+                borderColor: color, 
+                borderWidth: 1, 
+                borderRadius: 20, 
+                fontSize: 12, 
+                letterSpacing: 1, 
+                color: color,
+                display: searchVisible ? 'flex' : 'none'
+              }}
               onChangeText={t => [customFunction(t), setSearch(t)]}
               value={search}
-              placeholderTextColor={'white'}
+              placeholderTextColor={color}
               placeholderStyle={{ backgroundColor: 'blue'}}
               placeholder="  Buscar..."
               onBlur={() => { if (search === '') setSearchVisible(false) }}
@@ -104,7 +108,8 @@ const ActivityCard = ({
             <TouchableOpacity onPress={() => [setSearchVisible(true), refSearch.focus()]}>
               <Image
                 style={[{  width: 20, height: 20 }]}
-                source={Images.search}
+                source={ (screen === 'Hacer') ? Images.search : (screen === 'Comer') ? Images.search_primary : Images.search_yellow}
+                // source={Images.search}
                 resizeMode="contain"
               />
             </TouchableOpacity>

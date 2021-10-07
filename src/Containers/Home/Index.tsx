@@ -91,22 +91,14 @@ const IndexHomeContainer = () => {
           /> */}
         </View>
         <Text
-          style={[
-            Layout.fill,
-            Fonts.textCenter,
-            Fonts.textRegular,
-            {
-              marginTop: 5,
-              color: Colors.primary,
-              fontWeight: '600',
-              marginBottom: 10,
-              paddingBottom: 0,
-            },
-          ]}
-        >
-          {t('home.highlight')}
-        </Text>
-
+              style={[
+                Layout.fill,
+                Fonts.textSmall,
+                { color: Colors.yellow, marginBottom: 10, marginTop: 15 },
+              ]}
+            >
+              {t('home.highlight')}
+            </Text>
         <Stories data={stories} />
 
         <View style={[{ backgroundColor: Colors.darker }]}>

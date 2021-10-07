@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import { AllDataState } from '@/Store/AllData'
 import { FontSize } from '@/Theme/Variables'
 import MapView, { Marker, Region } from 'react-native-maps'
+import { TopBar } from '@/Components'
 const { width, height } = Dimensions.get('window')
 
 const screenWidth = width < height ? width : height
@@ -231,6 +232,7 @@ const IndexDetailsContainer = (route: any) => {
         { backgroundColor: Colors.darker },
       ]}
     >
+      <TopBar screen={'Inicio'} />
       <ScrollView>
         <View style={[{ backgroundColor: Colors.darker }]}>
           {banners}

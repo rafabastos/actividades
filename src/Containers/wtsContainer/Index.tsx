@@ -37,7 +37,7 @@ const IndexWTSContainer = () => {
         { backgroundColor: Colors.darker },
       ]}
     >
-      <TopBar screen={'Ver'} customFunction={(t) => setSearch(t)}  />
+      <TopBar screen={'Ver'} customFunction={(t) => setSearch(t)}  title={t('home.wts')}  />
       <ScrollView>
         {/* <View style={[{ width: '100%', alignItems: 'center' }]}>
           <Image
@@ -46,7 +46,7 @@ const IndexWTSContainer = () => {
             resizeMode="contain"
           />
         </View> */}
-        <Text
+        {/* <Text
           style={[
             Layout.fill,
             Fonts.textCenter,
@@ -55,7 +55,7 @@ const IndexWTSContainer = () => {
           ]}
         >
           {t('home.wts')}
-        </Text>
+        </Text> */}
         <View style={[{ backgroundColor: Colors.darker }]}>
           {filter.map((object: any, key: number) => (
             <View

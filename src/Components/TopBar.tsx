@@ -17,7 +17,7 @@ const ScreenHeight = Dimensions.get('window').height
 
 const styles = {
   main: {
-    backgroundColor: 'purple',
+    backgroundColor: '#563391',
     height: 60,
     width: ScreenWidth,
     right: 8,
@@ -42,6 +42,7 @@ const styles = {
 
 const ActivityCard = ({
   id = 0,
+  title = '',
   customFunction = () => {},
   screen = 'Inicio',
 }) => {
@@ -59,13 +60,24 @@ const ActivityCard = ({
           <View style={[styles.buttonView, { marginBottom: 4 }]} />
           <View style={styles.buttonView} />
         </TouchableOpacity>
-        { screen === 'Inicio' 
+        { (screen === 'Inicio' || screen === 'Detail')
           ? <Image
             style={[{ marginTop: 0, width: '80%', height: 40 }]}
             source={Images.logoH}
             resizeMode="contain"
           />
-          : <TextInput
+          : <>
+          <Text
+            style={[
+            Layout.fill,
+            Fonts.textCenter,
+            Fonts.textRegular,
+            { color: Colors.white, fontWeight: '600' },
+          ]}
+        >
+          {title}
+        </Text>
+          <TextInput
               style={{ height: 40, width: 150, borderColor: 'white', borderWidth: 1, borderRadius: 20, fontSize: 12, letterSpacing: 1 }}
               onChangeText={t => [customFunction(t), setSearch(t)]}
               value={search}
@@ -73,6 +85,7 @@ const ActivityCard = ({
               placeholderStyle={{ backgroundColor: 'blue'}}
               placeholder="  Buscar..."
             />
+            </>
         }
         <View style={{ width: 30 }} />
       </View>

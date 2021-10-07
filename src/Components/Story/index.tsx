@@ -144,16 +144,16 @@ const styles = new StyleSheet.create({
     paddingBottom: 5,
   },
   circle: {
-    width: 55,
-    height: 55,
-    borderRadius: 27.5,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
     borderWidth: 1,
     borderColor: "#FFF",
   },
   superCircle: {
     borderWidth: 3,
     borderColor: "#e95950",
-    borderRadius: 60,
+    borderRadius: 70,
   },
   modal: {
     flex: 1,

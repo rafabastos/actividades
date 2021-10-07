@@ -40,6 +40,7 @@ const IndexWTDContainer = () => {
     >
       <TopBar
         screen={'Hacer'}
+        title={t('home.wtd')}
         customFunction={(t) => setSearch(t)}
       />
       <ScrollView>
@@ -50,7 +51,7 @@ const IndexWTDContainer = () => {
             resizeMode="contain"
           />
         </View> */}
-        <Text
+        {/* <Text
           style={[
             Layout.fill,
             Fonts.textCenter,
@@ -59,7 +60,7 @@ const IndexWTDContainer = () => {
           ]}
         >
           {t('home.wtd')}
-        </Text>
+        </Text> */}
         <View style={[{ backgroundColor: Colors.darker }]}>
           {filter.map((object: any, key: number) => (
             <View

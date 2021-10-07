@@ -13,5 +13,6 @@ export default function ({}: ThemeVariables): ThemeImages {
     logoFacebook: require('@/Assets/Images/facebook_icon.png'),
     logoInstagram: require('@/Assets/Images/instagram_icon.png'),
     logoGoogle: require('@/Assets/Images/google_icon.png'),
+    search: require('@/Assets/Images/search.png'),
   }
 }

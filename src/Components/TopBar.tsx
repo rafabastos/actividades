@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native'
 import { useTheme } from '@/Theme'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { useNavigation } from '@react-navigation/core'
 import { IndexHomeContainer, IndexWTDContainer, IndexWTEContainer, IndexWTSContainer, IndexDetailsContainer } from '@/Containers'
 
@@ -51,6 +51,8 @@ const ActivityCard = ({
   const navigation = useNavigation()
   const [search, setSearch] = React.useState('')
   const [showMenu, setShowMenu] = React.useState(false)
+  const [searchVisible, setSearchVisible] = React.useState(false)
+  let refSearch
 
   return (
     <>
@@ -67,25 +69,46 @@ const ActivityCard = ({
             resizeMode="contain"
           />
           : <>
-          <Text
-            style={[
-            Layout.fill,
-            Fonts.textCenter,
-            Fonts.textRegular,
-            { color: Colors.white, fontWeight: '600' },
-          ]}
-        >
-          {title}
-        </Text>
-          <TextInput
-              style={{ height: 40, width: 150, borderColor: 'white', borderWidth: 1, borderRadius: 20, fontSize: 12, letterSpacing: 1 }}
+            <Text
+                style={[
+                Layout.fill,
+                Fonts.textCenter,
+                Fonts.textRegular,
+                { color: Colors.white, fontWeight: '600', marginLeft: 10 },
+              ]}
+            >
+              {title}
+            </Text>
+            <View style={{ width: 120, display: !searchVisible ? 'flex' : 'none' }} />
+            <TextInput
+              ref={ref => refSearch = ref}
+              style={{ 
+                height: 35,
+                width: 120, 
+                marginRight: 5, 
+                borderColor: 'white', 
+              borderWidth: 1, 
+              borderRadius: 20, 
+              fontSize: 12, 
+              letterSpacing: 1, 
+              color: 'white',
+              display: searchVisible ? 'flex' : 'none'
+            }}
               onChangeText={t => [customFunction(t), setSearch(t)]}
               value={search}
               placeholderTextColor={'white'}
               placeholderStyle={{ backgroundColor: 'blue'}}
               placeholder="  Buscar..."
+              onBlur={() => { if (search === '') setSearchVisible(false) }}
             />
-            </>
+            <TouchableOpacity onPress={() => [setSearchVisible(true), refSearch.focus()]}>
+              <Image
+                style={[{  width: 20, height: 20 }]}
+                source={Images.search}
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
+          </>
         }
         <View style={{ width: 30 }} />
       </View>

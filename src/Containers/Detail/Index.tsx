@@ -16,6 +16,7 @@ import { AllDataState } from '@/Store/AllData'
 import { FontSize } from '@/Theme/Variables'
 import MapView, { Marker, Region } from 'react-native-maps'
 import { TopBar } from '@/Components'
+import { color } from 'react-native-reanimated'
 const { width, height } = Dimensions.get('window')
 
 const screenWidth = width < height ? width : height
@@ -49,13 +50,15 @@ const IndexDetailsContainer = (route: any) => {
   }
   const activity = activities.find((object: any) => object.id == id)
 
+  console.log(' activity ===>>> ', activity)
+
   const scrollX = new Animated.Value(0) // localizacion del scroll
   const position = Animated.divide(scrollX, screenWidth)
 
   const styles = {
     titleStyle: { color: Colors.primary, marginTop: 20, fontWeight: '600' },
     carrouselImage: { width: screenWidth - 20, height: 250 },
-    specImage: { width: 45, height: 45, borderRadius: 22.5, marginLeft: 10 },
+    specImage: { width: 40, height: 40, borderRadius: 20, marginLeft: 10 },
     bannerImage: {
       width: (screenWidth - 50) / 3,
       height: 100,
@@ -117,7 +120,7 @@ const IndexDetailsContainer = (route: any) => {
             ),
         )}
       </ScrollView>
-      <View style={styles.dotsContainer}>
+      {/* <View style={styles.dotsContainer}>
         {activity.images_poster.map((_: any, i: number) => {
           const o = position.interpolate({
             inputRange: [i - 1, i, i + 1], // opacidad 1 cuando la posicion es la mismas del indice
@@ -126,9 +129,17 @@ const IndexDetailsContainer = (route: any) => {
           })
           return <Animated.View key={i} style={[styles.dot, { opacity: o }]} />
         })}
-      </View>
+      </View> */}
     </>
   )
+
+  const formatDate = (date) => {
+    var datePart = date.match(/\d+/g),
+  year = datePart[0].substring(2), // get only two digits
+  month = datePart[1], day = datePart[2];
+
+  return day+'/'+month+'/'+year;
+  }
 
   const info = (
     <View>
@@ -142,21 +153,93 @@ const IndexDetailsContainer = (route: any) => {
       >
         DESCRIPCIÓN
       </Text>
-      {activity.comment && (
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 15,
-            marginHorizontal: 10,
-            textAlign: 'center',
-          }}
-        >
-          {'     ' + activity.comment}
+      <View style={{ marginBottom: 20}}>
+        {/* WTD */}
+        {activity.comment && (
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 16,
+              marginHorizontal: 10,
+              marginBottom: 5,
+              textAlign: 'center',
+            }}
+          >
+            {'     ' + activity.comment}
+          </Text>
+        )}
+        {/* WTE */}
+        {activity.comments && (
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 16,
+              marginHorizontal: 10,
+              marginBottom: 5,
+              textAlign: 'center',
+            }}
+          >
+            {'     ' + activity.comments}
+          </Text>
+        )}
+        {/* WTS */}
+        {activity.synopsis && (
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 16,
+              marginHorizontal: 10,
+              marginBottom: 5,
+              textAlign: 'center',
+            }}
+          >
+            {'     ' + activity.synopsis}
+          </Text>
+        )}
+        {activity.name && (
+          <Text style={{ color: 'white', fontSize: 15, marginHorizontal: 10 }}>
+            {'Nombre: ' + activity.name}
+          </Text>
+        )}
+        {activity.phone && (
+          <Text style={{ color: 'white', fontSize: 15, marginHorizontal: 10 }}>
+            {'Telefono: ' + activity.phone}
+          </Text>
+        )}
+        {activity.address && (
+          <Text style={{ color: 'white', fontSize: 15, marginHorizontal: 10 }}>
+            {'Dirección: ' + activity.address}
+          </Text>
+        )}
+      </View>
+      {activity.title && (
+        <Text style={{ color: '#F9E104', fontSize: 14, marginHorizontal: 10 }}>
+          {'Título: ' + activity.title}
         </Text>
       )}
-      {activity.phone && (
-        <Text style={{ color: 'white', fontSize: 15, marginHorizontal: 10 }}>
-          {'Telefono: ' + activity.phone}
+      {activity.actors && (
+        <Text style={{ color: '#F9E104', fontSize: 14, marginHorizontal: 10 }}>
+          {'Telefono: ' + activity.actors}
+        </Text>
+      )}
+      {activity.only_price && (
+        <Text style={{ color: '#F9E104', fontSize: 14, marginHorizontal: 10}}>
+          {'Precio: ' + activity.only_price + '.000'}
+        </Text>
+      )}
+      {activity.country && (
+        <Text style={{ color: '#F9E104', fontSize: 14, marginHorizontal: 10}}>
+          {'País: ' + activity.country}
+        </Text>
+      )}
+      {activity.directed_by && (
+        <Text style={{ color: '#F9E104', fontSize: 14, marginHorizontal: 10}}>
+          {'Dirigida por: ' + activity.directed_by}
+        </Text>
+      )}
+      {activity.release_date && (
+        <Text style={{ color: '#F9E104', fontSize: 14, marginHorizontal: 10}}>
+          {'Fecha de lanzamiento: ' + formatDate(activity.release_date)}
         </Text>
       )}
       {(activity.fb || activity.ig || activity.specs) && (
@@ -235,9 +318,10 @@ const IndexDetailsContainer = (route: any) => {
       <TopBar screen={'Inicio'} />
       <ScrollView>
         <View style={[{ backgroundColor: Colors.darker }]}>
+          {activity.synopsis && carrousel}
           {banners}
           {info}
-          {carrousel}
+          {!activity.synopsis && carrousel}
           {/* {map} */}
         </View>
       </ScrollView>

@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { View, FlatList, Text, ScrollView, Image } from 'react-native'
+import { View, FlatList, Text, ScrollView, Image, Dimensions } from 'react-native'
 import { ActivityCard, TopBar } from '@/Components'
 import { useTheme } from '@/Theme'
 import { useTranslation } from 'react-i18next'
 import { AllDataState } from '@/Store/AllData'
 import { navigate } from '@/Navigators/Root'
+import { objectOf } from 'prop-types'
+
+const ScreenWidth = Dimensions.get('window').width
 
 const IndexWTEContainer = () => {
   const { t } = useTranslation()
@@ -20,6 +23,8 @@ const IndexWTEContainer = () => {
     (object: any) => object.what_to_eats.length > 0,
   )
   const [search, setSearch] = React.useState('')
+
+  const campaigns = alldata.campaigns.find((c: any) => c.type === 'WTE')
 
   const getItemsFiltered = (data: any) => {
     if (search !== '') {
@@ -78,6 +83,15 @@ const IndexWTEContainer = () => {
           ))}
         </View>
       </ScrollView>
+      {(campaigns && campaigns.images[0]) &&
+        <View style={{ height: 100, backgroundColor: 'red', width: ScreenWidth, right: 8,}}>
+          <Image
+            style={[{ marginTop: 0, width: ScreenWidth, height: 100 }]}
+            source={{ uri: campaigns.images[0].url}}
+            resizeMode='cover'
+          />
+          </View>
+      }
     </View>
   )
 }

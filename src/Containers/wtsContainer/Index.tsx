@@ -38,7 +38,7 @@ const IndexWTSContainer = () => {
       style={[
         Layout.fill,
         Gutters.smallHPadding,
-        { backgroundColor: Colors.darker },
+        { flex: 1, backgroundColor: Colors.darker },
       ]}
     >
       <TopBar screen={'Ver'} customFunction={(t) => setSearch(t)}  title={t('home.wts')}  />
@@ -46,7 +46,7 @@ const IndexWTSContainer = () => {
         <View style={[{ backgroundColor: Colors.darker }]}>
           {filter.map((object: any, key: number) => (
             <View
-              key={key}
+              key={key + '_wts'}
               style={[Layout.column, Common.backgroundWhite, { marginTop: 20 }]}
             >
               <Text
@@ -83,7 +83,7 @@ const IndexWTSContainer = () => {
         </View>
       </ScrollView>
       {(campaigns && campaigns.images[0]) &&
-        <View style={{ height: 100, backgroundColor: 'red', width: ScreenWidth, right: 8,}}>
+        <View style={{ height: 100,  width: ScreenWidth, right: 8,}}>
           <Image
             style={[{ marginTop: 0, width: ScreenWidth, height: 100 }]}
             source={{ uri: campaigns.images[0].url}}

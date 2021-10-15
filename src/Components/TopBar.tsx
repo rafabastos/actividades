@@ -127,10 +127,50 @@ const ActivityCard = ({
         justifyContent: 'space-around',
         alignItems: 'center'
       }}>
-        <Text onPress={() => navigation.navigate('Inicio')} style={{fontSize: 15, color: screen === 'Inicio' ?"#D9444D" : "#F9E104"}}>Inicio</Text>
-        <Text onPress={() => navigation.navigate('Hacer')} style={{fontSize: 15, color: screen === 'Hacer' ? "#D9444D" : "#F9E104"}}>Hacer</Text>
-        <Text onPress={() => navigation.navigate('Ver')} style={{fontSize: 15, color: screen === 'Ver' ? "#D9444D" : "#F9E104"}}>Ver</Text>
-        <Text onPress={() => navigation.navigate('Comer')} style={{fontSize: 15, color: screen === 'Comer' ? "#D9444D" : "#F9E104"}}>Comer</Text>
+        <Text
+          onPress={() => {
+            if (screen === 'Detalle') {
+              navigation.goBack()
+              navigation.navigate('Inicio')
+            } else navigation.navigate('Inicio')
+          }}
+          style={{fontSize: 15, color: screen === 'Inicio' ?"#D9444D" : "#F9E104"}}
+        >
+          Inicio
+        </Text>
+        <Text
+          onPress={() => {
+            if (screen === 'Detalle') {
+              navigation.goBack()
+              navigation.navigate('Hacer')
+            } else navigation.navigate('Hacer')
+          }}
+          style={{fontSize: 15, color: screen === 'Hacer' ? "#D9444D" : "#F9E104"}}
+        >
+          Hacer
+        </Text>
+        <Text
+          onPress={() => {
+            if (screen === 'Detalle') {
+              navigation.goBack()
+              navigation.navigate('Ver')
+            } else navigation.navigate('Ver')
+          }}
+          style={{fontSize: 15, color: screen === 'Ver' ? "#D9444D" : "#F9E104"}}
+        >
+          Ver
+        </Text>
+        <Text
+          onPress={() => {
+            if (screen === 'Detalle') {
+              navigation.goBack()
+              navigation.navigate('Comer')
+            } else navigation.navigate('Comer')
+          }}
+          style={{fontSize: 15, color: screen === 'Comer' ? "#D9444D" : "#F9E104"}}
+        >
+          Comer
+        </Text>
         </View>
         }
     </>

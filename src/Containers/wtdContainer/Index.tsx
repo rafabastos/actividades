@@ -39,7 +39,7 @@ const IndexWTDContainer = () => {
       style={[
         Layout.fill,
         Gutters.smallHPadding,
-        { backgroundColor: Colors.darker },
+        { flex: 1, backgroundColor: Colors.darker },
       ]}
     >
       <TopBar
@@ -51,7 +51,7 @@ const IndexWTDContainer = () => {
         <View style={[{ backgroundColor: Colors.darker }]}>
           {filter.map((object: any, key: number) => (
             <View
-              key={key}
+              key={key + '_wtd'}
               style={[Layout.column, Common.backgroundWhite, { marginTop: 20 }]}
             >
               <Text
@@ -88,7 +88,7 @@ const IndexWTDContainer = () => {
         </View>
       </ScrollView>
       {(campaigns && campaigns.images[0]) &&
-        <View style={{ height: 100, backgroundColor: 'red', width: ScreenWidth, right: 8,}}>
+        <View style={{ height: 100, width: ScreenWidth, right: 8,}}>
           <Image
             style={[{ marginTop: 0, width: ScreenWidth, height: 100 }]}
             source={{ uri: campaigns.images[0].url}}

@@ -22,6 +22,9 @@ const { width, height } = Dimensions.get('window')
 const screenWidth = width < height ? width : height
 
 const IndexDetailsContainer = (route: any) => {
+
+  console.log(' IndexDetailsContainer => ', route)
+
   const { t } = useTranslation()
   const { Common, Fonts, Gutters, Layout, Colors, Images } = useTheme()
   const { id, type } = route.route.params
@@ -315,7 +318,7 @@ const IndexDetailsContainer = (route: any) => {
         { backgroundColor: Colors.darker },
       ]}
     >
-      <TopBar screen={'Inicio'} />
+      <TopBar screen={'Detalle'} />
       <ScrollView>
         <View style={[{ backgroundColor: Colors.darker }]}>
           {activity.synopsis && carrousel}
